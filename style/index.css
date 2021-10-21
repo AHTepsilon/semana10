@@ -1,0 +1,73 @@
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction: column;
+}
+
+#candidateRegister
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#IDtext
+{
+    margin: 2px;
+    height: 40px;
+    font-size: medium;
+}
+
+#nameText
+{
+    margin: 2px; 
+    height: 40px;
+    font-size: medium;
+}
+
+#registerButton
+{
+    margin: 10px;
+    height: 40px;
+    font-size: medium;
+}
+
+#IDvoteCandidate
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#candidateId
+{
+    height: 40px;
+    font-size: medium;
+}
+
+#voteButton
+{
+    margin: 10px;
+    height: 40px;
+    font-size: medium;
+}
+
+#sideButtons
+{
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: right;
+}
+
+#candidateList
+{
+    margin: 10px;
+}
+
+#votintlist
+{
+    margin: 10px;
+}
