@@ -1,3 +1,18 @@
+import {initializeApp} from "firebase/app";
+import {getDatabase} from "firebase/database";
+
+import {getFirebaseConfig} from "./firebase-config";
+
+// Initialize Firebase
+const firebaseAppConfig = getFirebaseConfig();
+const firebaseApp = initializeApp(firebaseAppConfig); 
+
+registerUser = (user) =>
+{
+    const db = getDatabase();
+       
+}
+
 const id = document.getElementById("IDtext");
 const nameCandidate = document.getElementById("nameText");
 const idVoter = document.getElementById("candidateId");
