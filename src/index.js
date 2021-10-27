@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {getDatabase} from "firebase/database";
+import {getDatabase, ref, set} from "firebase/database";
 
 import {getFirebaseConfig} from "./firebase-config";
 
@@ -7,10 +7,11 @@ import {getFirebaseConfig} from "./firebase-config";
 const firebaseAppConfig = getFirebaseConfig();
 const firebaseApp = initializeApp(firebaseAppConfig); 
 
-registerUser = (user) =>
+function registerUser(userObject)
 {
     const db = getDatabase();
-       
+    const dbRef = ref(db, "users");
+    set(dbRef, userObject);
 }
 
 const id = document.getElementById("IDtext");
@@ -23,7 +24,7 @@ const voteBtn = document.getElementById("voteButton");
 const candidateListBtn = document.getElementById("candidateList");
 const votListBtn = document.getElementById("votintList");
 
-saveDataIdName = () =>
+const saveDataIdName = (e, event) =>
 {
     let i = id.value;
     let n = nameCandidate.value;
@@ -34,12 +35,10 @@ saveDataIdName = () =>
         NAME: n
     };
 
-    let json = JSON.stringify(userObject);
-
-    console.log(json);
+    registerUser(userObject);
 }
 
-voteForCandidateUsingId = () =>
+const voteForCandidateUsingId = () =>
 {
     let iV = idVoter.value;
 
