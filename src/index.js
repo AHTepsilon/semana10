@@ -34,7 +34,8 @@ function updateCandidateList(info)
 
     Object.keys(info).forEach((key, index)=>
     {
-        text += info[index].NAME + ", " + info[index].ID + "\n";
+        //text += info[index].NAME + ", " + info[index].ID + "\n";
+        text += info[key].NAME + ", " + info[key].ID + "\n";
     });
 
     alert(text);
