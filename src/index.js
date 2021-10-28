@@ -11,8 +11,15 @@ const firebaseApp = initializeApp(firebaseAppConfig);
 function registerUser(userObject)
 {
     const db = getDatabase();
-    const dbRef = ref(db, "candidates/ " + userObject.NAME);
+    const dbRef = ref(db, "candidates/ " + userObject.ID);
     set(dbRef, userObject);
+}
+
+function registerVotes(votesAmount)
+{
+    const db = getDatabase();
+    const dbRef = ref(db, "votes/" + votesAmount.NAME);
+    set(dbRef, votesAmount);
 }
 
 function getCandidates()
@@ -24,6 +31,31 @@ function getCandidates()
     {
         const data = snapshot.val();
         updateCandidateList(data);
+        console.log(data);
+    });
+}
+
+function updateVotesCount(info)
+{
+    let text = "";
+
+    Object.keys(info).forEach((key, index) =>
+    {
+        text += info[key].VOTES + ", " + info[key].NAME + "\n";
+    });
+
+    alert(text);
+}
+
+function getVotes()
+{
+    const db = getDatabase();
+    const dbRef = ref(db, "votes");
+
+    onValue(dbRef, (snapshot) => 
+    {
+        const data = snapshot.val();
+        updateVotesCount(data);
         console.log(data);
     });
 }
@@ -41,11 +73,6 @@ function updateCandidateList(info)
     alert(text);
 }
 
-function registerVote(iV)
-{
-
-}
-
 const id = document.getElementById("IDtext");
 const nameCandidate = document.getElementById("nameText");
 const idVoter = document.getElementById("candidateId");
@@ -60,28 +87,31 @@ const saveDataIdName = (e, event) =>
 {
     let i = id.value;
     let n = nameCandidate.value;
+    let votes = 0;
 
     let userObject =
     {
         ID: i,
-        NAME: n
+        NAME: n,
     };
 
+    let votesAmount =
+    {
+        VOTES: votes,
+        NAME: n
+    }
+
     registerUser(userObject);
+    registerVotes(votesAmount);
 }
 
-const voteForCandidateUsingId = (e, event) =>
+const addVoteToCandidate = (e, event) =>
 {
-    let iV = idVoter.value;
 
-    let votingData =
-    {
-
-        
-    }
 }
 
 registerBtn.addEventListener("click", saveDataIdName);
-voteBtn.addEventListener("click", voteForCandidateUsingId);
+voteBtn.addEventListener("click", addVoteToCandidate);
 
 candidateListBtn.addEventListener("click", getCandidates);
+votListBtn.addEventListener("click", getVotes);
