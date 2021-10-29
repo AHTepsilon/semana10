@@ -43,7 +43,7 @@ function updateVotesCount(info)
     {
         text += info[key].VOTES + ", " + info[key].NAME + "\n";
     });
-
+    
     alert(text);
 }
 
@@ -105,9 +105,14 @@ const saveDataIdName = (e, event) =>
     registerVotes(votesAmount);
 }
 
-const addVoteToCandidate = (e, event) =>
-{
+const addVoteToCandidate = (votesAmount) =>
+{   
+        Object.keys(votesAmount).forEach((key, index)=>
+        {
+            votesAmount.VOTES++;
 
+            alert("vote added to candidate");
+        });
 }
 
 registerBtn.addEventListener("click", saveDataIdName);
